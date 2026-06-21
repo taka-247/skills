@@ -51,13 +51,20 @@ The article should ideally relate to one of the following:
 Find one video published **yesterday** from one of the following YouTube channels and give **only the URL** to the user — no title, no description.
  
 **Strategy (try in order):**
-1. Use `web_fetch` on each channel's `/videos` page to get the latest uploads and check publish dates
-2. If that doesn't clearly show yesterday's video, fall back to `web_search` with a query like:
+1. Use `web_fetch` on each channel's RSS feed (XML, not the `/videos` page — YouTube's
+   anti-bot wall blocks direct fetches of the rendered `/videos` page, but the RSS
+   endpoint is plain XML and is not blocked) to get the latest uploads and check
+   publish dates:
+   `https://www.youtube.com/feeds/videos.xml?channel_id=[CHANNEL_ID]`
+2. If a feed fetch fails or doesn't clearly show yesterday's video, fall back to
+   `web_search` with a query like:
    `site:youtube.com/watch "[channel name]" after:[yesterday's date]`
-**YouTube channels:**
-- https://www.youtube.com/@misayuka.podcast/videos
-- https://www.youtube.com/@BusinessInsider/videos
-- https://www.youtube.com/@LearnEnglishWithTVSeries/videos
+3. If the fall back didn't work out, just list up one latest video of each channel, i.e. put three video url there. Plus, no need to include the reason why 1 and 2 failed
+
+**YouTube channels (handle → channel ID for the RSS feed):**
+- @misayuka.podcast → `UC-8PjUhkPibqh1ogdKaWk2w` → https://www.youtube.com/feeds/videos.xml?channel_id=UC-8PjUhkPibqh1ogdKaWk2w
+- @BusinessInsider → `UCcyq283he07B7_KUX07mmtA` → https://www.youtube.com/feeds/videos.xml?channel_id=UCcyq283he07B7_KUX07mmtA
+- @LearnEnglishWithTVSeries → `UCKgpamMlm872zkGDcBJHYDg` → https://www.youtube.com/feeds/videos.xml?channel_id=UCKgpamMlm872zkGDcBJHYDg
 **Notes:**
 - If multiple channels published yesterday, pick one video randomly
 - If no channel published yesterday, say so clearly — do not guess or fabricate a link
