@@ -36,7 +36,7 @@ The following bullet list should be returned when the user asks for their daily 
  
 ### #1 — Article for Reading
  
-Use `web_search` to find one interesting article and give the link to the user.
+Use `web_search` to find one interesting article and give **only the URL** to the user — no title, no description.
  
 The article should ideally relate to one of the following:
 - Good life hacks in Japan
@@ -48,7 +48,7 @@ The article should ideally relate to one of the following:
 - Articles must be written in English
 ### #2 — Video for Listening
  
-Find one video published **yesterday** from one of the following YouTube channels and give the link to the user.
+Find one video published **yesterday** from one of the following YouTube channels and give **only the URL** to the user — no title, no description.
  
 **Strategy (try in order):**
 1. Use `web_fetch` on each channel's `/videos` page to get the latest uploads and check publish dates
@@ -60,5 +60,5 @@ Find one video published **yesterday** from one of the following YouTube channel
 - https://www.youtube.com/@LearnEnglishWithTVSeries/videos
 **Notes:**
 - If multiple channels published yesterday, pick one video randomly
-- If no channel published yesterday, pick one latest video from one of them randomly
+- If no channel published yesterday, say so clearly — do not guess or fabricate a link
  
